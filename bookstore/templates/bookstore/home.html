@@ -1,0 +1,22 @@
+{% extends 'bookstore/base.html' %}
+
+{% block content %}
+    <h1>Books</h1>
+    {% for book in books %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2 " href="#"><em>{{ book.author }}</em></a>
+                    {% if book.status == 'available' %}
+                        <small class="text-success float-end">{{ book.status }}</small>
+                    {% else %}
+                    <small class="text-danger float-end">{{ book.status }}</small>
+                    {% endif %}
+                </div>
+                <h2><a class="article-title" href="#">{{ book.title }}</a></h2>
+                <hr>
+                <p class="article-content">{{ book.description }}</p>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
