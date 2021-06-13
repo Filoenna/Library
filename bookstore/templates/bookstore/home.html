@@ -6,7 +6,7 @@
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2 " href="#"><em>{{ book.author }}</em></a>
+                    <a href="#"><small><em>{{ book.author }}</em></small></a>
                     {% if book.status == 'available' %}
                         <small class="text-success float-end">{{ book.status }}</small>
                     {% else %}
