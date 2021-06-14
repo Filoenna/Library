@@ -9,3 +9,4 @@ class Book(models.Model):
     author = models.CharField(max_length=100)
     status = models.CharField(max_length=100, default='available') 
     lent_to = models.ForeignKey(User, default=None, on_delete=models.SET_DEFAULT, null=True)
+
