@@ -32,6 +32,7 @@
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
+                            <a class="nav-item nav-link" href="{% url 'profile' %}"><i class="fas fa-user me-2"></i><em>Profile</em></a>
                             <a class="nav-item nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i><em>Logout</em></a>
                         {% else %}
                             <a class="nav-item nav-link" href="{% url 'login' %}"><i class="fas fa-user me-2"></i><em>Login</em></a>
