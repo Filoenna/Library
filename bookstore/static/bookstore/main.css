@@ -1,8 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap');
 
+/*
+Color theme - Berry blues from https://www.canva.com/learn/100-color-combinations/
+#1E1F26 Midnight Blue
+@283655 Indigo Ink
+#4D648D Blueberry
+#D0E1F9
+*/
+
+
+
 body {
-    background: rgba(255,239,221,0.25);
-    color: #333333;
+    background: #D0E1F9;
+    color: #4D648D;
     margin-top: 5rem;
     font-family: 'Viaoda Libre', cursive;
     font-weight: bold;
@@ -13,9 +23,24 @@ a {
     text-decoration: none;
 }
 
-.old-paper {
-    background-color: #FFEFDD !important;
+a:hover {
+    color: #283655 !important;
+    text-shadow: 2px 2px 3px;
 }
+
+.old-paper {
+    background-color: #1E1F26 !important;
+    
+}
+
+.old-paper a {
+    color: #D0E1F9 !important;
+} 
+
+.old-paper a:hover {
+    color: #4D648D !important;
+    text-shadow: none;
+} 
 
 .content-section {
     background: #ffffff;
@@ -24,3 +49,16 @@ a {
     border-radius: 3px;
     margin-bottom: 20px;
 }
+
+.account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+.account-heading {
+    font-size: 2.5rem;
+}
+
+
