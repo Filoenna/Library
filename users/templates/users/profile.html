@@ -1,0 +1,26 @@
+{% extends 'bookstore/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="content-section">
+        <div class="d-flex">
+            <div class="flex-shrink-0">
+                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="User profile picture">
+            </div>
+            <div class="flex-grow-1 ms-3">
+                <h2 class="account-heading">{{ user.username|capfirst }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+            </div>
+        </div>
+        
+        <div>
+            <hr class='my-2'>
+            <h3 class='text-center'>Borrowed books</h3>
+            {% for book in user.book_set.all %}
+                <h2>{{ book.title }}</h2>
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock content %}
