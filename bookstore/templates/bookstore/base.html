@@ -32,7 +32,9 @@
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
-                            <a class="nav-item nav-link" href="{% url 'book-create' %}"><i class="fas fa-plus me-2"></i><em>Add book</em></a>
+                            {% if perms.bookstore.add_book %}
+                                <a class="nav-item nav-link" href="{% url 'book-create' %}"><i class="fas fa-plus me-2"></i><em>Add book</em></a>
+                            {% endif %}
                             <a class="nav-item nav-link" href="{% url 'profile' %}"><i class="fas fa-user me-2"></i><em>Profile</em></a>
                             <a class="nav-item nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i><em>Logout</em></a>
                         {% else %}

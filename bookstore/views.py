@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import Book
 
@@ -36,7 +36,10 @@ class BookDetailView(DetailView):
     model = Book
     context_object_name = 'book'
 
-class BookCreateView(LoginRequiredMixin, CreateView):
+class BookCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+
+    permission_required = 'bookstore.add_book'
+    
     model = Book
     context_object_name = 'book'
     fields = ['author','title', 'description']
