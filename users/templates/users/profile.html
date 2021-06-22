@@ -16,9 +16,21 @@
         <div>
             <hr class='my-2'>
             <h3 class='text-center'>Borrowed books</h3>
-            {% for book in user.book_set.all %}
-                <h2>{{ book.title }}</h2>
-            {% endfor %}
+            <div class='container'>
+                {% for book in user.book_set.all %}
+                    <article class="media content-section">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                                <small><em>{{ book.author }}</em></small>
+                                <a class='btn btn-secondary btn-sm mt-1 mb-1 float-end' href="{% url 'return-book' book.id %}">Return a book</a>
+                            </div>
+                            <h2 class="article-title">{{ book.title }}</h2>
+                        <hr>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+            
         </div>
 
     </div>

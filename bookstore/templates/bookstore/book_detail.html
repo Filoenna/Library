@@ -1,0 +1,20 @@
+{% extends 'bookstore/base.html' %}
+
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <small><em>{{ book.author }}</em></small>
+                {% if book.status == 'available' %}
+                    <a class='btn btn-secondary btn-sm mt-1 mb-1 float-end' href="{% url 'rent-book' book.id %}">Rent a book</a>
+                {% else %}
+                    <small class="text-danger float-end">{{ book.status }}</small>
+                {% endif %}
+            </div>
+            <h2 class="article-title" >{{ book.title }}</h2>
+            <hr>
+            <p class="article-content">{{ book.description }}</p>
+        </div>
+        </article>
+
+{% endblock content %}
