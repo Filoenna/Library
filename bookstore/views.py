@@ -43,9 +43,3 @@ class BookCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Book
     context_object_name = 'book'
     fields = ['author','title', 'description']
-
-
-
-
-
-

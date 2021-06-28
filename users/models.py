@@ -9,7 +9,5 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def borrowed_books(self):
-        return self.user.lent_to.all()
 
 
