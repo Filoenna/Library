@@ -13,7 +13,7 @@
                         <small class="text-danger float-end">{{ book.status }}</small>
                     {% endif %}
                 </div>
-                <h2><a class="article-title" href="#">{{ book.title }}</a></h2>
+                <h2><a class="article-title" href="{% url 'book-detail' book.id %}">{{ book.title }}</a></h2>
                 <hr>
                 <p class="article-content">{{ book.description }}</p>
             </div>

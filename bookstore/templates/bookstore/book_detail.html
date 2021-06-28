@@ -1,0 +1,27 @@
+{% extends 'bookstore/base.html' %}
+
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <small><em>{{ book.author }}</em></small>
+                {% if book.status == 'available' %}
+                    <a class='btn btn-secondary btn-sm mt-1 mb-1 float-end' href="{% url 'rent-book' book.id %}">Rent a book</a>
+                {% else %}
+                    <small class="text-danger float-end">{{ book.status }}</small>
+                {% endif %}
+            </div>
+            <h2 class="article-title" >{{ book.title }}</h2>
+            <hr>
+            <p class="article-content">{{ book.description }}</p>
+            <hr class='mt-2'>
+            {% if perms.bookstore.change_book %}
+                <a class='btn btn-outline-info me-2' href="{% url 'book-update' book.id %}">Update</a>
+            {% endif %}
+            {% if perms.bookstore.delete_book %}
+                <a class='btn btn-outline-danger me-2' href="{% url 'book-delete' book.id %}">Delete</a>
+            {% endif %}
+        </div>
+        </article>
+
+{% endblock content %}

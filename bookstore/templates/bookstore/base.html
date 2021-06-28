@@ -32,6 +32,9 @@
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
+                            {% if perms.bookstore.add_book %}
+                                <a class="nav-item nav-link" href="{% url 'book-create' %}"><i class="fas fa-plus me-2"></i><em>Add book</em></a>
+                            {% endif %}
                             <a class="nav-item nav-link" href="{% url 'profile' %}"><i class="fas fa-user me-2"></i><em>Profile</em></a>
                             <a class="nav-item nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i><em>Logout</em></a>
                         {% else %}
@@ -60,7 +63,7 @@
                     <h3>Our Sidebar</h3>
                     <p class='text-muted'>You can put any information here you'd like.
                         <ul class="list-group">
-                            <li class="list-group-item list-group-item-light">Latest Posts</li>
+                            <li class="list-group-item list-group-item-light"><a class="" href=""></a> Latest Posts</li>
                             <li class="list-group-item list-group-item-light">Announcements</li>
                             <li class="list-group-item list-group-item-light">Calendars</li>
                             <li class="list-group-item list-group-item-light">etc</li>

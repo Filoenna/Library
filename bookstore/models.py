@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import SET_DEFAULT
+from django.urls import reverse
 
 class Book(models.Model):
 
@@ -13,4 +14,7 @@ class Book(models.Model):
 
     def __str__(self):
         return f'{self.author} - {self.title}' 
+
+    def get_absolute_url(self):
+        return reverse('book-detail', kwargs={'pk': self.pk})
 
