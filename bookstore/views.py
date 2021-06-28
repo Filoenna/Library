@@ -1,15 +1,10 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .models import Book
-
-def home(request):
-    context = {
-        'books': Book.objects.all()
-    }
-    return render(request, 'bookstore/home.html', context)
 
 @login_required
 def rent(request, new_pk):
@@ -43,3 +38,31 @@ class BookCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Book
     context_object_name = 'book'
     fields = ['author','title', 'description']
+
+    def handle_no_permission(self):
+        messages.warning(self.request, 'You have no permission')
+        return redirect('library-home')
+
+class BookUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+
+    permission_required = 'bookstore.change_book'
+    
+    model = Book
+    context_object_name = 'book'
+    fields = ['author','title', 'description']
+
+    def handle_no_permission(self):
+        messages.warning(self.request, 'You have no permission')
+        return redirect('library-home')
+
+class BookDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+
+    permission_required = 'bookstore.delete_book'
+    
+    model = Book
+    context_object_name = 'book'
+
+
+    def handle_no_permission(self):
+        messages.warning(self.request, 'You have no permission')
+        return redirect('library-home')
