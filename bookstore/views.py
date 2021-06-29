@@ -1,25 +1,29 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .models import Book
 
-@login_required
-def rent(request, new_pk):
-    book = Book.objects.get(pk=new_pk)
-    book.status = 'rented'
-    book.lent_to = request.user
-    book.save()
-    return redirect('library-home')
+class BookRentView(LoginRequiredMixin, View):
 
-def breturn(request, new_pk):
-    book = Book.objects.get(pk=new_pk)
-    book.status = 'available'
-    book.lent_to = None
-    book.save()
-    return redirect('library-home')
+    def get(self, request, *args, **kwargs):
+        book = Book.objects.get(pk=self.kwargs['pk'])
+        book.status = 'rented'
+        book.lent_to = request.user
+        book.save()
+        return redirect('library-home')
+
+
+class BookReturnView(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        book = Book.objects.get(pk=self.kwargs['pk'])
+        book.status = 'available'
+        book.lent_to = None
+        book.save()
+        return redirect('library-home')
+
 
 class BookListView(ListView):
     model = Book
